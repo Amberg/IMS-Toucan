@@ -98,7 +98,7 @@ def french_test(version, model_id=None, exec_device="cpu", speaker_reference=Non
                             Maître renard par l'odeur alléché ,
                             Lui tint à peu près ce langage :
                             «Et bonjour Monsieur du Corbeau.
-                            Que vous ętes joli! que vous me semblez beau!"""],
+                            Que vous êtes joli! que vous me semblez beau!"""],
                filename=f"audios/{model_id}_french_test_{version}.wav",
                device=exec_device,
                language="fra",

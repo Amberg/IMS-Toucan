@@ -163,7 +163,7 @@ class TTSInterface(QMainWindow):
         self.text_input_layout.addWidget(self.dropdown_box)
 
         self.text_input = QLineEdit()
-        self.text_input.setPlaceholderText("Enter the text you want to be read here...")
+        self.text_input.setPlaceholderText("Enter the text you want to be read here... (use , to insert pauses)")
         self.text_input.textChanged.connect(self.on_user_input_changed)
         self.text_input_layout.addWidget(self.text_input)
         self.main_layout.insertLayout(0, self.text_input_layout)
@@ -402,7 +402,7 @@ class TTSInterface(QMainWindow):
                                                        energy=None,
                                                        input_is_phones=False,
                                                        return_plot_as_filepath=False,
-                                                       loudness_in_db=-29.0,
+                                                       loudness_in_db=-24.0,
                                                        prosody_creativity=0.8,
                                                        return_everything=True)
         # reset and clear everything
@@ -539,7 +539,7 @@ class TTSInterface(QMainWindow):
                                                            energy=None,
                                                            input_is_phones=False,
                                                            return_plot_as_filepath=False,
-                                                           loudness_in_db=-29.0,
+                                                           loudness_in_db=-24.0,
                                                            prosody_creativity=0.1,
                                                            return_everything=True)
 

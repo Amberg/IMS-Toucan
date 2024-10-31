@@ -17,10 +17,6 @@ class ControllableInterface:
         else:  # in this case we hopefully got a number.
             os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
             os.environ["CUDA_VISIBLE_DEVICES"] = f"{gpu_id}"
-        if tts_model_path is None:
-            tts_model_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="ToucanTTS.pt")
-        if vocoder_model_path is None:
-            vocoder_model_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="Vocoder.pt")
         if embedding_gan_path is None:
             embedding_gan_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="embedding_gan.pt")
         self.device = "cuda" if gpu_id != "cpu" else "cpu"

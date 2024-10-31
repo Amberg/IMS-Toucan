@@ -14,6 +14,8 @@ class GanWrapper:
         self.wgan = None
         self.normalize = True
 
+        torch.manual_seed(160923)
+
         self.load_model(path_wgan)
 
         self.U = self.compute_controllability()
@@ -21,12 +23,12 @@ class GanWrapper:
         self.z_list = list()
 
         while len(self.z_list) < num_cached_voices + 2:
-            z = self.wgan.G.sample_latent(1, self.wgan.G.z_dim, temperature=0.8)
-            sims = [-1.0]
+            z = self.wgan.G.sample_latent(1, self.wgan.G.z_dim, temperature=0.4)
+            l1_distances = [100.0]
             for other_z in self.z_list:
-                sims.append(torch.nn.functional.cosine_similarity(z, other_z))
-            print(max(sims), len(self.z_list))
-            if max(sims) < 0.25:
+                l1_distances.append(torch.nn.functional.l1_loss(z, other_z))
+            print("dist: ", min(l1_distances), len(self.z_list))
+            if min(l1_distances) > 0.5:
                 self.z_list.append(z)
         self.z = self.z_list[0]
 
