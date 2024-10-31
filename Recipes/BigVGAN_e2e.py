@@ -11,7 +11,7 @@ def run(gpu_id, resume_checkpoint, finetune, resume, model_dir, use_wandb, wandb
     from Modules.Vocoder.HiFiGAN_Dataset import HiFiGANDataset
     from Modules.Vocoder.HiFiGAN_Discriminators import AvocodoHiFiGANJointDiscriminator
     from Modules.Vocoder.HiFiGAN_train_loop import train_loop
-    from Utility.storage_config import MODELS_DIR
+    from Utility.storage_config import MODEL_DIR
 
     if gpu_id == "cpu":
         device = torch.device("cpu")
@@ -27,7 +27,7 @@ def run(gpu_id, resume_checkpoint, finetune, resume, model_dir, use_wandb, wandb
     if model_dir is not None:
         model_save_dir = model_dir
     else:
-        model_save_dir = os.path.join(MODELS_DIR, "BigVGAN_e2e")
+        model_save_dir = os.path.join(MODEL_DIR, "BigVGAN_e2e")
     os.makedirs(model_save_dir, exist_ok=True)
 
     # To prepare the data, have a look at Modules/Vocoder/run_end-to-end_data_creation

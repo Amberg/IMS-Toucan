@@ -7,6 +7,8 @@ import pandas as pd
 import torch
 from huggingface_hub import hf_hub_download
 
+from Utility.storage_config import MODEL_DIR
+
 matplotlib.rcParams['mathtext.fontset'] = 'stix'
 matplotlib.rcParams['font.family'] = 'STIXGeneral'
 matplotlib.rcParams['font.size'] = 7
@@ -86,7 +88,7 @@ def compute_loss_for_approximated_embeddings(csv_path, iso_lookup, language_embe
 
 
 if __name__ == "__main__":
-    default_model_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="ToucanTTS.pt")  # MODELS_DIR must be absolute path, the relative path will fail at this location
+    default_model_path = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="ToucanTTS.pt")  # MODEL_DIR must be absolute path, the relative path will fail at this location
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", type=str, default=default_model_path, help="model path that should be used for creating oracle lang emb distance cache")
     parser.add_argument("--min_n_langs", type=int, default=5, help="minimum amount of languages used for averaging")

@@ -210,15 +210,15 @@ class TTSDataset(Dataset):
 
     def __getitem__(self, index):
         return self.datapoints[index][0], \
-               self.datapoints[index][1], \
-               self.datapoints[index][2], \
-               self.datapoints[index][3], \
-               self.datapoints[index][4], \
-               self.datapoints[index][5], \
-               self.datapoints[index][6], \
-               None, \
-               self.language_id, \
-               self.datapoints[index][7]
+            self.datapoints[index][1], \
+            self.datapoints[index][2], \
+            self.datapoints[index][3], \
+            self.datapoints[index][4], \
+            self.datapoints[index][5], \
+            self.datapoints[index][6], \
+            None, \
+            self.language_id, \
+            self.datapoints[index][7]
 
     def __len__(self):
         return len(self.datapoints)

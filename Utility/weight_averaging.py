@@ -78,6 +78,6 @@ def save_model_for_use(model, name="", default_embed=None, dict_name="model"):
     torch.save({dict_name: model.state_dict(), "default_emb": default_embed, "config": model.config}, name)
     print("...done!")
 
+
 def count_parameters(net):
     return sum(p.numel() for p in net.parameters() if p.requires_grad)
-

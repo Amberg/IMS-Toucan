@@ -5,13 +5,14 @@ from huggingface_hub import hf_hub_download
 from torchaudio.transforms import Resample
 
 from Preprocessing.Codec.encodec import EnCodec
+from Utility.storage_config import MODEL_DIR
 
 
 class CodecAudioPreprocessor:
 
     def __init__(self, input_sr, output_sr=16000, device="cpu", path_to_model=None):
         if path_to_model is None:
-            path_to_model = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="16kHz_encodec.pt")
+            path_to_model = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="16kHz_encodec.pt")
         self.device = device
         self.input_sr = input_sr
         self.output_sr = output_sr

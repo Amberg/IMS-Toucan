@@ -293,20 +293,20 @@ class ToucanTTS(torch.nn.Module):
             run_stochastic (Bool): Whether to detach the inputs to the normalizing flow for stability.
         """
         outs, \
-        stochastic_loss, \
-        duration_loss, \
-        pitch_loss, \
-        energy_loss = self._forward(text_tensors=text_tensors,
-                                    text_lengths=text_lengths,
-                                    gold_speech=gold_speech,
-                                    speech_lengths=speech_lengths,
-                                    gold_durations=gold_durations,
-                                    gold_pitch=gold_pitch,
-                                    gold_energy=gold_energy,
-                                    utterance_embedding=utterance_embedding,
-                                    is_inference=False,
-                                    lang_ids=lang_ids,
-                                    run_stochastic=run_stochastic)
+            stochastic_loss, \
+            duration_loss, \
+            pitch_loss, \
+            energy_loss = self._forward(text_tensors=text_tensors,
+                                        text_lengths=text_lengths,
+                                        gold_speech=gold_speech,
+                                        speech_lengths=speech_lengths,
+                                        gold_durations=gold_durations,
+                                        gold_pitch=gold_pitch,
+                                        gold_energy=gold_energy,
+                                        utterance_embedding=utterance_embedding,
+                                        is_inference=False,
+                                        lang_ids=lang_ids,
+                                        run_stochastic=run_stochastic)
 
         # calculate loss
         regression_loss = self.criterion(predicted_features=outs,
@@ -417,9 +417,9 @@ class ToucanTTS(torch.nn.Module):
             else:
                 refined_codec_frames = preliminary_spectrogram
             return refined_codec_frames, \
-                   predicted_durations.squeeze(), \
-                   pitch_predictions.squeeze(), \
-                   energy_predictions.squeeze()
+                predicted_durations.squeeze(), \
+                pitch_predictions.squeeze(), \
+                energy_predictions.squeeze()
         else:
             if run_stochastic:
                 stochastic_loss, _ = self.flow_matching_decoder.compute_loss(x1=gold_speech.transpose(1, 2),
@@ -429,10 +429,10 @@ class ToucanTTS(torch.nn.Module):
             else:
                 stochastic_loss = None
             return preliminary_spectrogram, \
-                   stochastic_loss, \
-                   duration_loss, \
-                   pitch_loss, \
-                   energy_loss
+                stochastic_loss, \
+                duration_loss, \
+                pitch_loss, \
+                energy_loss
 
     @torch.inference_mode()
     def inference(self,
@@ -461,15 +461,15 @@ class ToucanTTS(torch.nn.Module):
         utterance_embeddings = utterance_embedding.unsqueeze(0) if utterance_embedding is not None else None
 
         outs, \
-        duration_predictions, \
-        pitch_predictions, \
-        energy_predictions = self._forward(text_pseudobatched,
-                                           ilens,
-                                           speech_pseudobatched,
-                                           is_inference=True,
-                                           utterance_embedding=utterance_embeddings,
-                                           lang_ids=lang_id,
-                                           run_stochastic=run_stochastic)  # (1, L, odim)
+            duration_predictions, \
+            pitch_predictions, \
+            energy_predictions = self._forward(text_pseudobatched,
+                                               ilens,
+                                               speech_pseudobatched,
+                                               is_inference=True,
+                                               utterance_embedding=utterance_embeddings,
+                                               lang_ids=lang_id,
+                                               run_stochastic=run_stochastic)  # (1, L, odim)
         self.train()
 
         if return_duration_pitch_energy:

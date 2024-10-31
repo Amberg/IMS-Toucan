@@ -16,7 +16,7 @@ from Modules.Vocoder.HiFiGAN_Generator import HiFiGAN
 from Preprocessing.AudioPreprocessor import AudioPreprocessor
 from Preprocessing.TextFrontend import ArticulatoryCombinedTextFrontend
 from Preprocessing.TextFrontend import get_language_id
-from Utility.storage_config import MODELS_DIR
+from Utility.storage_config import MODEL_DIR
 from Utility.utils import cumsum_durations
 from Utility.utils import float2pcm
 
@@ -32,12 +32,12 @@ class ToucanTTSInterface(torch.nn.Module):
         super().__init__()
         self.device = device
         if tts_model_path is None:
-            tts_model_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="ToucanTTS.pt")
+            tts_model_path = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="ToucanTTS.pt")
         elif not tts_model_path.endswith(".pt"):
             # default to shorthand system
-            tts_model_path = os.path.join(MODELS_DIR, f"ToucanTTS_{tts_model_path}", "best.pt")
+            tts_model_path = os.path.join(MODEL_DIR, f"ToucanTTS_{tts_model_path}", "best.pt")
         if vocoder_model_path is None:
-            vocoder_model_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="Vocoder.pt")
+            vocoder_model_path = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="Vocoder.pt")
 
         ################################
         #   build text to phone        #
@@ -58,7 +58,7 @@ class ToucanTTSInterface(torch.nn.Module):
         ######################################
         self.speaker_embedding_func_ecapa = EncoderClassifier.from_hparams(source="speechbrain/spkrec-ecapa-voxceleb",
                                                                            run_opts={"device": str(device)},
-                                                                           savedir=os.path.join(MODELS_DIR, "Embedding", "speechbrain_speaker_embedding_ecapa"))
+                                                                           savedir=os.path.join(MODEL_DIR, "Embedding", "speechbrain_speaker_embedding_ecapa"))
 
         ################################
         #  load mel to wave model      #

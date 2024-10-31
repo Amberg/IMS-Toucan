@@ -7,7 +7,7 @@ from Utility.path_to_transcript_dicts import *
 def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb_resume_id, gpu_count):
     from Modules.Aligner.autoaligner_train_loop import train_loop as train_aligner
     from Utility.corpus_preparation import prepare_aligner_corpus
-    from Utility.storage_config import MODELS_DIR
+    from Utility.storage_config import MODEL_DIR
     from Utility.storage_config import PREPROCESSING_DIR
 
     if gpu_id == "cpu":
@@ -1711,7 +1711,7 @@ def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb
             datasets.append(dataset)
 
     train_set = ConcatDataset(datasets)
-    save_dir = os.path.join(MODELS_DIR, "Aligner")
+    save_dir = os.path.join(MODEL_DIR, "Aligner")
     os.makedirs(save_dir, exist_ok=True)
     save_dir_aligner = save_dir + "/aligner"
     os.makedirs(save_dir_aligner, exist_ok=True)

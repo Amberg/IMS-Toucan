@@ -12,7 +12,7 @@ def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb
     from Modules.ToucanTTS.ToucanTTS import ToucanTTS
     from Modules.ToucanTTS.toucantts_train_loop_arbiter import train_loop
     from Utility.corpus_preparation import prepare_tts_corpus
-    from Utility.storage_config import MODELS_DIR
+    from Utility.storage_config import MODEL_DIR
     from Utility.storage_config import PREPROCESSING_DIR
 
     if gpu_id == "cpu":
@@ -25,7 +25,7 @@ def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb
     if model_dir is not None:
         save_dir = model_dir
     else:
-        save_dir = os.path.join(MODELS_DIR, "ToucanTTS_German_refined")
+        save_dir = os.path.join(MODEL_DIR, "ToucanTTS_German_refined")
     os.makedirs(save_dir, exist_ok=True)
 
     if gpu_count > 1:

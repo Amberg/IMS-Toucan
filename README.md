@@ -10,7 +10,8 @@
 # Text-to-Speech for over 7000 Languages
 
 IMS Toucan is a toolkit for training, using, and teaching state-of-the-art Text-to-Speech Synthesis, developed at the
-**Institute for Natural Language Processing (IMS), University of Stuttgart, Germany**, official home of the massively multilingual ToucanTTS system. Our system is fast, controllable, and doesn't require a ton of compute.
+**Institute for Natural Language Processing (IMS), University of Stuttgart, Germany**, official home of the massively
+multilingual ToucanTTS system. Our system is fast, controllable, and doesn't require a ton of compute.
 
 <br>
 
@@ -18,7 +19,13 @@ IMS Toucan is a toolkit for training, using, and teaching state-of-the-art Text-
 
 <br>
 
-If you find this repo useful, consider giving it a star. ⭐ Large numbers make me happy, and they are very motivating. If you want to motivate me even more, you can even consider [sponsoring this toolkit](https://github.com/sponsors/Flux9665). We only use GitHub Sponsors for this, there are scammers on other platforms that pretend to be the creator. Don't let them fool you. The code and the models are absolutely free, and thanks to the generous support of Hugging Face🤗, we even have an [instance of the model running on GPU](https://huggingface.co/spaces/Flux9665/MassivelyMultilingualTTS) free for anyone to use.
+If you find this repo useful, consider giving it a star. ⭐ Large numbers make me happy, and they are very motivating. If
+you want to motivate me even more, you can even
+consider [sponsoring this toolkit](https://github.com/sponsors/Flux9665). We only use GitHub Sponsors for this, there
+are scammers on other platforms that pretend to be the creator. Don't let them fool you. The code and the models are
+absolutely free, and thanks to the generous support of Hugging Face🤗, we even have
+an [instance of the model running on GPU](https://huggingface.co/spaces/Flux9665/MassivelyMultilingualTTS) free for
+anyone to use.
 
 --- 
 <br>
@@ -92,7 +99,8 @@ absolute).
 
 #### Pretrained Models
 
-You don't need to use pretrained models, but it can speed things up tremendously. They will be downloaded on the fly automatically when they are needed, thanks to Hugging Face🤗 and [VB](https://github.com/Vaibhavs10) in particular.
+You don't need to use pretrained models, but it can speed things up tremendously. They will be downloaded on the fly
+automatically when they are needed, thanks to Hugging Face🤗 and [VB](https://github.com/Vaibhavs10) in particular.
 
 #### \[optional] eSpeak-NG
 
@@ -176,15 +184,22 @@ absolute paths to each of the audio files in your dataset as strings as the keys
 corresponding audios as the values.
 
 Then go to the directory
-*TrainingInterfaces/Recipes*. In there, make a copy of the `finetuning_example_simple.py` file if you just want to finetune on a single dataset or `finetuning_example_multilingual.py` if you want to finetune on multiple datasets, potentially even multiple languages. We will use this copy
-as reference and only make the necessary changes to use the new dataset. Find the call(s) to the *prepare_tts_corpus* function. Replace the path_to_transcript_dict used there with the one(s) you just created. Then change the name of the corresponding cache directory to something that makes sense for the dataset.
-Also look out for the variable *save_dir*, which is where the checkpoints will be saved to. This is a default value, you can overwrite it when calling
+*TrainingInterfaces/Recipes*. In there, make a copy of the `finetuning_example_simple.py` file if you just want to
+finetune on a single dataset or `finetuning_example_multilingual.py` if you want to finetune on multiple datasets,
+potentially even multiple languages. We will use this copy
+as reference and only make the necessary changes to use the new dataset. Find the call(s) to the *prepare_tts_corpus*
+function. Replace the path_to_transcript_dict used there with the one(s) you just created. Then change the name of the
+corresponding cache directory to something that makes sense for the dataset.
+Also look out for the variable *save_dir*, which is where the checkpoints will be saved to. This is a default value, you
+can overwrite it when calling
 the pipeline later using a command line argument, in case you want to fine-tune from a checkpoint and thus save into a
 different directory. Finally, change the
-*lang* argument in the creation of the dataset and in the call to the train loop function to the ISO 639-3 language ID that
+*lang* argument in the creation of the dataset and in the call to the train loop function to the ISO 639-3 language ID
+that
 matches your data.
 
-The arguments that are given to the train loop in the finetuning examples are meant for the case of finetuning from a pretrained model. If you want
+The arguments that are given to the train loop in the finetuning examples are meant for the case of finetuning from a
+pretrained model. If you want
 to train from scratch, have a look at a different pipeline that has ToucanTTS in its name and look at the arguments
 used there.
 
@@ -223,13 +238,17 @@ least a GPU ID).
 --wandb_resume_id <the id of the run you want to resume, if you are using weights&biases (you can find the id in the URL of the run)>
 ```
 
-For multi-GPU training, you have to supply multiple GPU ids (comma separated) and start the script with torchrun. You also have to specify the number of GPUs. This has to match the number of IDs that you supply. Careful: torchrun is incompatible with nohup! Use tmux instead to keep the script running after you log out of the shell.
+For multi-GPU training, you have to supply multiple GPU ids (comma separated) and start the script with torchrun. You
+also have to specify the number of GPUs. This has to match the number of IDs that you supply. Careful: torchrun is
+incompatible with nohup! Use tmux instead to keep the script running after you log out of the shell.
 
 ```
 torchrun --standalone --nproc_per_node=4 --nnodes=1 run_training_pipeline.py <shorthand of the pipeline> --gpu_id "0,1,2,3"
 ```
 
-After every epoch (or alternatively after certain step counts), some logs will be written to the console and to the Weights and Biases website, if you are logged in and set the flag. If you get cuda out of memory errors, you need to decrease
+After every epoch (or alternatively after certain step counts), some logs will be written to the console and to the
+Weights and Biases website, if you are logged in and set the flag. If you get cuda out of memory errors, you need to
+decrease
 the batchsize in the arguments of the call to the training_loop in the pipeline you are running. Try decreasing the
 batchsize in small steps until you get no more out of cuda memory errors.
 
@@ -245,7 +264,8 @@ manually.
 fuser -v /dev/nvidia*
 ```
 
-Whenever a checkpoint is saved, a compressed version that can be used for inference is also created, which is named _best.py_
+Whenever a checkpoint is saved, a compressed version that can be used for inference is also created, which is named
+_best.py_
 
 --- 
 <br>
@@ -260,15 +280,19 @@ Here are a few points that were brought up by users:
   specified GPU is set as the only visible device, in order to avoid backend stuff running accidentally on different
   GPUs. So internally the program will name the device GPU0, because it is the only GPU it can see. It is actually
   running on the GPU you specified.
-- read_to_file produces strange outputs -- Check if you're passing a list to the method or a string. Since strings can be
+- read_to_file produces strange outputs -- Check if you're passing a list to the method or a string. Since strings can
+  be
   iterated over, it might not throw an error, but a list of strings is expected.
 - `UserWarning: Detected call of lr_scheduler.step() before optimizer.step().` -- We use a custom scheduler, and torch
   incorrectly thinks that we call the scheduler and the optimizer in the wrong order. Just ignore this warning, it is
   completely meaningless.
 - `WARNING[XFORMERS]: xFormers can't load C++/CUDA extensions. [...]` -- Another meaningless warning. We actually don't
-  use xFormers ourselves, it is just part of the dependencies of one of our dependencies, but it is not used at any place.
-- `The torchaudio backend is switched to 'soundfile'. Note that 'sox_io' is not supported on Windows. [...]` -- Just happens under Windows and doesn't affect anything.
-- `WARNING:phonemizer:words count mismatch on 200.0% of the lines (2/1) [...]` -- We have no idea why espeak started giving out this warning, however it doesn't seem to affect anything, so it seems safe to ignore.
+  use xFormers ourselves, it is just part of the dependencies of one of our dependencies, but it is not used at any
+  place.
+- `The torchaudio backend is switched to 'soundfile'. Note that 'sox_io' is not supported on Windows. [...]` -- Just
+  happens under Windows and doesn't affect anything.
+- `WARNING:phonemizer:words count mismatch on 200.0% of the lines (2/1) [...]` -- We have no idea why espeak started
+  giving out this warning, however it doesn't seem to affect anything, so it seems safe to ignore.
 - Loss turns to `NaN` -- The default learning rates work on clean data. If your data is less clean, try using the scorer
   to find problematic samples, or reduce the learning rate. The most common problem is there being pauses in the speech,
   but nothing that hints at them in the text. That's why ASR corpora, which leave out punctuation, are usually difficult

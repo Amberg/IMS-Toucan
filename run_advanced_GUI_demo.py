@@ -25,6 +25,7 @@ from PyQt5.QtWidgets import QWidget
 from huggingface_hub import hf_hub_download
 
 from InferenceInterfaces.ToucanTTSInterface import ToucanTTSInterface
+from Utility.storage_config import MODEL_DIR
 from Utility.utils import load_json_from_path
 
 
@@ -126,7 +127,7 @@ class TTSInterface(QMainWindow):
     def __init__(self, tts_interface: ToucanTTSInterface):
         super().__init__()
 
-        path_to_iso_list = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="iso_to_fullname.json")
+        path_to_iso_list = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="iso_to_fullname.json")
         iso_to_name = load_json_from_path(path_to_iso_list)
         self.name_to_iso = dict()
         for iso in iso_to_name:

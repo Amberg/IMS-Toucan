@@ -5,6 +5,7 @@ from huggingface_hub import hf_hub_download
 
 from InferenceInterfaces.ToucanTTSInterface import ToucanTTSInterface
 from Modules.ControllabilityGAN.GAN import GanWrapper
+from Utility.storage_config import MODEL_DIR
 
 
 class ControllableInterface:
@@ -18,7 +19,7 @@ class ControllableInterface:
             os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
             os.environ["CUDA_VISIBLE_DEVICES"] = f"{gpu_id}"
         if embedding_gan_path is None:
-            embedding_gan_path = hf_hub_download(repo_id="Flux9665/ToucanTTS", filename="embedding_gan.pt")
+            embedding_gan_path = hf_hub_download(cache_dir=MODEL_DIR, repo_id="Flux9665/ToucanTTS", filename="embedding_gan.pt")
         self.device = "cuda" if gpu_id != "cpu" else "cpu"
         self.model = ToucanTTSInterface(device=self.device, tts_model_path=tts_model_path, vocoder_model_path=vocoder_model_path)
         self.wgan = GanWrapper(embedding_gan_path, num_cached_voices=available_artificial_voices, device=self.device)

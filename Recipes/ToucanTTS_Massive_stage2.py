@@ -18,7 +18,7 @@ def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb
     from Modules.ToucanTTS.ToucanTTS import ToucanTTS
     from Modules.ToucanTTS.toucantts_train_loop_arbiter import train_loop
     from Utility.corpus_preparation import prepare_tts_corpus
-    from Utility.storage_config import MODELS_DIR
+    from Utility.storage_config import MODEL_DIR
     from Utility.storage_config import PREPROCESSING_DIR
 
     # It is not recommended training this yourself or to finetune this, but you can.
@@ -27,7 +27,7 @@ def run(gpu_id, resume_checkpoint, finetune, model_dir, resume, use_wandb, wandb
 
     datasets = list()
 
-    base_dir = os.path.join(MODELS_DIR, "ToucanTTS_MassiveDataBigModel_stage2_reworked_v10")
+    base_dir = os.path.join(MODEL_DIR, "ToucanTTS_MassiveDataBigModel_stage2_reworked_v10")
     if model_dir is not None:
         meta_save_dir = model_dir
     else:
