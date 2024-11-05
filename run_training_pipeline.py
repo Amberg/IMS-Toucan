@@ -10,6 +10,7 @@ from Recipes.BigVGAN_e2e import run as be2e
 from Recipes.HiFiGAN_combined import run as HiFiGAN
 from Recipes.HiFiGAN_e2e import run as e2e
 from Recipes.ToucanTTS_IntegrationTest import run as tt_integration_test
+from Recipes.ToucanTTS_Massive_Asian import run as asian
 from Recipes.ToucanTTS_Massive_English_stage1 import run as eng1
 from Recipes.ToucanTTS_Massive_English_stage2 import run as eng2
 from Recipes.ToucanTTS_Massive_German import run as deu
@@ -31,6 +32,7 @@ pipeline_dict = {
     "eng1"                           : eng1,
     "eng2"                           : eng2,
     "deu"                            : deu,
+    "asian": asian,
     "stage1"                         : stage1,
     "stage2"                         : stage2,
     "stage3"                         : stage3,
@@ -38,8 +40,8 @@ pipeline_dict = {
     "aligner"                        : aligner,
     # vocoder training (not recommended, best to use provided checkpoint)
     "hifigan"                        : HiFiGAN,
-    "e2e" : e2e,
-    "be2e": be2e
+    "e2e"  : e2e,
+    "be2e" : be2e
 }
 
 if __name__ == '__main__':
