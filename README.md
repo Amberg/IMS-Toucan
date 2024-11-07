@@ -46,6 +46,10 @@ anyone to use.
 
 [We have also published a massively multilingual TTS dataset on Hugging Face🤗](https://huggingface.co/datasets/Flux9665/BibleMMS)
 
+### Languages
+
+[A list of supported langages can be found here](https://github.com/DigitalPhonetics/IMS-Toucan/blob/MassiveScaleToucan/Utility/language_list.md)
+
 --- 
 <br>
 
