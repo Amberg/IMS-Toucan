@@ -32,12 +32,6 @@ anyone to use.
 
 ## Links 🦚
 
-### Static Demos
-
-[Human-in-the-loop edited poetry for German literary studies](https://poetictts.github.io/)
-
-[Cloning prosody across speakers](https://toucanprosodycloningdemo.github.io)
-
 ### Interactive Demo
 
 [Check out our interactive massively-multi-lingual demo on Hugging Face🤗](https://huggingface.co/spaces/Flux9665/MassivelyMultilingualTTS)
@@ -48,7 +42,7 @@ anyone to use.
 
 ### Languages
 
-[A list of supported langages can be found here](https://github.com/DigitalPhonetics/IMS-Toucan/blob/MassiveScaleToucan/Utility/language_list.md)
+[A list of supported languages can be found here](https://github.com/DigitalPhonetics/IMS-Toucan/blob/MassiveScaleToucan/Utility/language_list.md)
 
 --- 
 <br>
