@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
+from pathlib import Path  
 
 this_dir = Path(__file__).parent
 module_dir = this_dir / "piper"
