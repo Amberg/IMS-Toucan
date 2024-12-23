@@ -20,7 +20,6 @@ setup(
     url="https://github.com/Amberg/IMS-Toucan",
     author="Flux9665",
     license="MIT",
-    packages=setuptools.find_packages(),
     packages=find_packages(),  # Findet alle Python-Module (Ordner mit `__init__.py`)
     install_requires=requirements,
     classifiers=[
